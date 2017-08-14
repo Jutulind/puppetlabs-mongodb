@@ -17,6 +17,9 @@ class mongodb::repo::apt inherits mongodb::repo {
     }
 
     Apt::Source['mongodb']->Package<|tag == 'mongodb'|>
+    exec { 'apt-update':
+        command => '/usr/bin/apt-get update',
+    }
   }
   else {
     apt::source { 'mongodb':
